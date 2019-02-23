@@ -7,21 +7,21 @@ public class JointLineRenderer2D : MonoBehaviour {
 	public Color color = Color.white;
 	public float lineWidth = 1;
 
-	private List<Joint2D> joints = new List<Joint2D>();
+	private List<SmartJoint2D> joints = new List<SmartJoint2D>();
 	private Mesh mesh = null;
 	private Material material;
 
 	const float lineOffset = -0.001f;
 
 	public void Start() {
-		joints = Joint2D.GetJoints(gameObject);
+		joints = SmartJoint2D.GetJoints(gameObject);
 
 		Max2D.Check();
 		material = new Material(Max2D.lineMaterial);
 	}
 
 	public void Update() {
-		foreach(Joint2D joint in joints) {
+		foreach(SmartJoint2D joint in joints) {
 			if (joint.gameObject == null) {
 				continue;
 			}
@@ -36,7 +36,7 @@ public class JointLineRenderer2D : MonoBehaviour {
 			}
 
 			switch (joint.jointType) {
-				case Joint2D.Type.HingeJoint2D:
+				case SmartJoint2D.Type.HingeJoint2D:
 					Pair2D pairA = new Pair2D(new Vector2D (transform.TransformPoint (joint.anchoredJoint2D.anchor)), new Vector2D (joint.anchoredJoint2D.connectedBody.transform.TransformPoint (Vector2.zero)));
 					GenerateMesh(pairA);
 					Draw();

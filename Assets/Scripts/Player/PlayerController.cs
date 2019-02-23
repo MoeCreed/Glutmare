@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Glutmare {
     public class PlayerController : MonoBehaviour {
 
-        private static float MIN_MOVE_SPEED_FACTOR = 0.5F;
+        private static readonly float MIN_MOVE_SPEED_FACTOR = 0.5F;
 
         [SerializeField]
         private float speed = 10;
